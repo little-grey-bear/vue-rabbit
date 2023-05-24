@@ -15,10 +15,12 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/about">Aboutafadfaf </RouterLink>
       </nav>
     </div> -->
-    <el-button type="success">Primary</el-button>
+    <!-- <el-button type="success">Primary</el-button> -->
+
+
   </header>
 
-  <!-- <RouterView /> -->
+  <RouterView />
 </template>
 
 <style scoped>
