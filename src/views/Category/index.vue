@@ -1,3 +1,3 @@
 <template>
-  <div>wo shi category</div>
+<div> 我是分类页</div>
 </template>

@@ -1,3 +1,3 @@
 <template>
-    我是home页
+<div>我是首页</div>
 </template>
