@@ -17,7 +17,3 @@ app.use(router)
 
 app.mount('#app')
 
-getCategory().then(res =>{
-    console.log(res)
-})
-
