@@ -6,8 +6,9 @@ export const useCategoryStore = defineStore('category', () => {
     const getCategory = async ()=>{
         const res= await getCategoryApi()
         categoryList.value = res.result
+        // 后端代码测试接口
+        // categoryList.value = res.data
       }
-  
     return { 
       categoryList, 
       getCategory 

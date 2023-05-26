@@ -3,6 +3,9 @@
 import axios from "axios";
 const httpInstance = axios.create({
     baseURL: "http://pcapi-xiaotuxian-front-devtest.itheima.net",
+    // 后端 代码测试接口
+    // baseURL: "http://localhost:8001",
+
     timeout: 5000
 })
 
