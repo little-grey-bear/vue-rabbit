@@ -17,22 +17,28 @@ const router = createRouter({
 
       component: Login
     },
+    // {
+    //   path: '/home',
+
+    //   component: Home
+    // },
+    
     {
       path: '/',
-      name: '退出',
+      name: '',
       component: Layout,
       children: [
         {
-          path: '',
+          path: '/category',
           component: Category
         },
         {
-          path: 'home',
+          path: '',
           component: Home
         }
       ]
     },
-    
+   
   ]
 })
 
