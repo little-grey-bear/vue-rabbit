@@ -27,3 +27,10 @@ export const getHotAPI = () => {
     })
     // return  httpInstance('home/hot', 'get', {})
   }
+
+  // 获得货品数据
+export const getGoodsApi = ()=>{
+  return httpInstance({
+    url:'/home/goods'
+  })
+}
