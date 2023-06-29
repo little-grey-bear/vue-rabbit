@@ -17,19 +17,14 @@ const router = createRouter({
 
       component: Login
     },
-    // {
-    //   path: '/home',
 
-    //   component: Home
-    // },
-    
     {
       path: '/',
       name: '',
       component: Layout,
       children: [
         {
-          path: '/category',
+          path: 'category/:id',//这里少加了一个/导致路径找不到
           component: Category
         },
         {
