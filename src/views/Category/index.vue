@@ -6,6 +6,7 @@ import { useRoute } from 'vue-router';
 const categoryDate = ref({})
 const route = useRoute()
 const getCategory = async () =>{
+    // console.log(route.params.id)
     const res = await getCategoryApi(route.params.id)
     categoryDate.value = res.result
     console.log(res.result)
@@ -22,7 +23,7 @@ onMounted (() =>{
       <div class="bread-container">
         <el-breadcrumb separator=">">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>居家</el-breadcrumb-item>
+          <el-breadcrumb-item>{{categoryDate.name }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
     </div>
