@@ -3,22 +3,21 @@ import{ getBannerApi } from '@/apis/home'
 import { getCategoryApi } from '@/apis/category';
 import {ref,onMounted,onUpdated} from 'vue';
 import { useRoute } from 'vue-router';
+import GoodsItem from '../Home/components/GoodItem.vue'
 // 获取数据
-const categoryDate = ref({})
+const categoryData = ref({})
 const route = useRoute()
 const getCategory = async () =>{
     // console.log(route.params.id)
     const res = await getCategoryApi(route.params.id)
-    categoryDate.value = res.result
-    console.log(res.result)
+    categoryData.value = res.result
+    // console.log(res.result)
+    console.log(categoryData)
 }
 onMounted (() =>{
     getCategory()
 })
-onUpdated (() =>{
-  getBanner()
-  getCategory()
- })
+
 const bannerList = ref([])
 const getBanner = async ()=> {
   const res = await getBannerApi({distributionSite:"2"})
@@ -28,10 +27,11 @@ const getBanner = async ()=> {
  onMounted(() => {
   getBanner()
  })
+ onUpdated (() =>{
+  getBanner()
+  getCategory()
+ })
 
-//  onUnmounted(() => {
-//   getBanner()
-//  })
 </script>
 
 <template>
@@ -41,7 +41,7 @@ const getBanner = async ()=> {
       <div class="bread-container">
         <el-breadcrumb separator=">">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>{{categoryDate.name }}</el-breadcrumb-item>
+          <el-breadcrumb-item>{{categoryData.name }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <!-- 轮播图 -->
@@ -52,6 +52,27 @@ const getBanner = async ()=> {
           </el-carousel-item>
         </el-carousel>
       </div>
+
+      <!-- 分类数据模板 -->
+      <div class="sub-list">
+      <h3>全部分类</h3>
+      <ul>
+        <li v-for="i in categoryData.children" :key="i.id">
+          <RouterLink to="/">
+            <img :src="i.picture" />
+            <p>{{ i.name }}</p>
+          </RouterLink>
+        </li>
+      </ul>
+    </div>
+    <div class="ref-goods" v-for="item in categoryData.children" :key="item.id">
+      <div class="head">
+        <h3>- {{ item.name }}-</h3>
+      </div>
+      <div class="body">
+        <GoodsItem v-for="good in item.goods" :good="good" :key="good.id" />
+      </div>
+    </div>
 
     </div>
   </div>
