@@ -3,34 +3,44 @@ import{ getBannerApi } from '@/apis/home'
 import { getCategoryApi } from '@/apis/category';
 import {ref,onMounted,onUpdated} from 'vue';
 import { useRoute } from 'vue-router';
-import GoodsItem from '../Home/components/GoodItem.vue'
+import GoodsItem from '../Home/components/GoodItem.vue';
+import { onBeforeRouteUpdate } from 'vue-router';
 // 获取数据
 const categoryData = ref({})
 const route = useRoute()
-const getCategory = async () =>{
-    // console.log(route.params.id)
-    const res = await getCategoryApi(route.params.id)
+const getCategory = async (id=route.params.id) =>{
+    const res = await getCategoryApi(id)
     categoryData.value = res.result
     // console.log(res.result)
-    console.log(categoryData)
+    // console.log(categoryData)
 }
+
 onMounted (() =>{
     getCategory()
 })
+// 在路由更新前调用方法
+onBeforeRouteUpdate((to) =>{
+  // console.log(to)
+  getCategory(to.params.id)
 
+
+
+ })
 const bannerList = ref([])
 const getBanner = async ()=> {
   const res = await getBannerApi({distributionSite:"2"})
   bannerList.value = res.result;
-  console.log(res)
 }
  onMounted(() => {
   getBanner()
  })
- onUpdated (() =>{
-  getBanner()
-  getCategory()
- })
+
+
+// 我们实现把 路由参数变化的时候
+//  onUpdated (() =>{
+//   getCategory()
+//  })
+
 
 </script>
 

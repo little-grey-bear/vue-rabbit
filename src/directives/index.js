@@ -10,11 +10,11 @@ export const layzPlugin ={
                 const { stop } = useIntersectionObserver(
                     el,
                     ([{ isIntersecting }]) => {
-                        console.log(isIntersecting)
+                        // console.log(isIntersecting)
                         if (isIntersecting) {
                             // 进入视口区域
                             el.src = binding.value
-                            console.log(el.src)
+                            // console.log(el.src)
                             stop()
                         }
                      
