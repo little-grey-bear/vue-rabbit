@@ -1,18 +1,36 @@
 <script setup>
-import {getCategoryFilterAPI} from '@/apis/category'
+import {getCategoryFilterAPI,getSubCategoryAPI} from '@/apis/category'
 import {ref ,onMounted} from 'vue'
 import { useRoute } from 'vue-router'; 
+import GoodItem from '../Home/components/GoodItem.vue';
 const categoryData = ref({})
 const route = useRoute()
 
 const getCategoryGoods = async ()=>{
   const res = await getCategoryFilterAPI(route.params.id)
-  // console.log(res.result)
   categoryData.value = res.result
   console.log(categoryData)
 }
 onMounted(()=>{
   getCategoryGoods()
+})
+
+
+// 获得数据列表
+const goodList = ref([])
+const reqData = ref({
+  categoryId: route.params.id,
+  page: 1,
+  pageSize: 20,
+  sortField: 'publishTime' 
+})
+const getGoodList = async ()=>{
+   const res = await getSubCategoryAPI(reqData.value)
+   goodList.value=res.result.items
+  //  console.log(res)
+}
+onMounted(()=>{
+  getGoodList() 
 })
 
 
@@ -37,14 +55,12 @@ onMounted(()=>{
       </el-tabs>
       <div class="body">
          <!-- 商品列表-->
+         <GoodItem v-for="good in goodList" :good="good" :key="good.id"/>
       </div>
     </div>
   </div>
 
 </template>
-
-
-
 <style lang="scss" scoped>
 .bread-container {
   padding: 25px 0;
