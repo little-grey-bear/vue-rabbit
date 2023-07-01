@@ -7,6 +7,7 @@ import Login from '@/views/Login/index.vue'
 import Layout from '@/views/Layout/index.vue'
 import Category from '@/views/Category/index.vue'
 import  Home from '@/views/Home/index.vue'
+import subCategory from '@/views/subCategory/index.vue'
 
 
 const router = createRouter({
@@ -30,7 +31,11 @@ const router = createRouter({
         {
           path: '',
           component: Home
-        }
+        },
+        {
+          path: 'category/sub/:id',//这里少加了一个/导致路径找不到
+          component: subCategory
+        },
       ]
     },
    
