@@ -130,9 +130,9 @@ onMounted(() => {
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
               <!-- 24小时 -->
-              <DetailHotVue/>
+              <DetailHotVue :hot-type="1"/>
               <!-- 周周榜  -->
-              <DetailHotVue/>
+              <DetailHotVue :hot-type="2"/>
 
             </div>
           </div>
